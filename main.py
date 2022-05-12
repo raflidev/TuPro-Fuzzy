@@ -16,16 +16,15 @@ fuzzyRule = {
   ('buruk', 'mahal'): 'tidak rekomen',
   ('buruk', 'cukup'): 'tidak rekomen',
   ('buruk', 'murah'): 'cukup rekomen',
-  ('cukup', 'mahal'): 'tidak rekomen',
-  ('cukup', 'cukup'): 'rekomen',
-  ('cukup', 'murah'): 'sangat rekomen',
+  ('cukup', 'mahal'): 'cukup rekomen',
+  ('cukup', 'cukup'): 'cukup rekomen',
+  ('cukup', 'murah'): 'cukup rekomen',
   ('baik', 'mahal'): 'rekomen',
   ('baik', 'cukup'): 'sangat rekomen',
   ('baik', 'murah'): 'sangat rekomen',
 }
 
-deffuzy = {'tidak rekomen': 0, "cukup rekomen": 50,
-                "rekomen": 75, "sangat rekomen": 100}
+deffuzy = {'tidak rekomen': 0, "cukup rekomen": 50, "rekomen": 75, "sangat rekomen": 100}
 
 
 def BuatFuzzy():
@@ -42,17 +41,17 @@ def ReadFromExcel():
   return pd.read_excel('./bengkel.xlsx')
 
 def Fuzzification(fuzzy, x):
-  keAnggotaan = BuatFuzzy()
-  for j, data in enumerate(keAnggotaan[fuzzy].keys()):
+  anggota = BuatFuzzy()
+  for j, data in enumerate(anggota[fuzzy].keys()):
       b, c = fuzzyAnggota[fuzzy][j][data]
       a, d = b - 1, c + 1
       if b <= x <= c:
-          keAnggotaan[fuzzy][data] = 1
+          anggota[fuzzy][data] = 1
       elif a < x < b:
-          keAnggotaan[fuzzy][data] = (x-a)/(b-a)
+          anggota[fuzzy][data] = (x-a)/(b-a)
       elif c < x <= d:
-          keAnggotaan[fuzzy][data] = (d-x)/(d-c)
-  return keAnggotaan[fuzzy]
+          anggota[fuzzy][data] = (d-x)/(d-c)
+  return anggota[fuzzy]
 
 def FuzzificationData(excel):
   fuzzied = []
