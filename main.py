@@ -15,10 +15,10 @@ fuzzyAnggota['harga'].append({'mahal': [8, 10]})
 fuzzyRule = {
   ('buruk', 'mahal'): 'tidak rekomen',
   ('buruk', 'cukup'): 'tidak rekomen',
-  ('buruk', 'murah'): 'cukup rekomen',
-  ('cukup', 'mahal'): 'cukup rekomen',
+  ('buruk', 'murah'): 'rekomen',
+  ('cukup', 'mahal'): 'tidak rekomen',
   ('cukup', 'cukup'): 'cukup rekomen',
-  ('cukup', 'murah'): 'cukup rekomen',
+  ('cukup', 'murah'): 'rekomen',
   ('baik', 'mahal'): 'rekomen',
   ('baik', 'cukup'): 'sangat rekomen',
   ('baik', 'murah'): 'sangat rekomen',
